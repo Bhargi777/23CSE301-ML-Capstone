@@ -21,13 +21,13 @@ The project is developed collaboratively using **Git and GitHub**, with each tea
 
 ---
 
-#  Team Members
+# Team Members
 
 | Member | Name | Branch | Responsibility |
-|--------|------|--------|----------------|
-| Member 1 | __________________ | `__________________` | ______________________________ |
-| Member 2 | **Bhargava** | **`Bhargava-Regression`** | **Regression** |
-| Member 3 | __________________ | `__________________` | ______________________________ |
+|---|---|---|---|
+| Member 1 | ______________________________ | `______________________________` | ______________________________ |
+| Member 2 | **MASAPETA KURUVA BHARGAVA SRI SAI** | **`Bhargava-Regression`** | **Regression** |
+| Member 3 | ______________________________ | `______________________________` | ______________________________ |
 
 ### Branching Strategy
 
@@ -44,55 +44,3 @@ main
 │
 └── Member 3
     └── <Member-3-Branch>
-
-## Project Structure
-
-```
-
-23CSE301-ML-Capstone/
-│
-├── README.md
-├── requirements.txt
-│
-├── data/
-│   │
-│   ├── regression/
-│   │   └── air_quality/
-│   │       └── air_quality.csv
-│   │
-│   ├── classification/
-│   │   └── adult_income/
-│   │       └── adult.csv
-│   │
-│   └── clustering/
-│       └── gas_sensor/
-│           └── gas_sensor.csv
-│
-├── notebooks/
-│   │
-│   ├── regression.ipynb
-│   ├── classification.ipynb
-│   └── clustering.ipynb
-│
-├── models/
-│   │
-│   ├── regression/
-│   ├── classification/
-│   └── clustering/
-│
-├── results/
-│   │
-│   ├── regression/
-│   │   ├── figures/
-│   │   └── tables/
-│   │
-│   ├── classification/
-│   │   ├── figures/
-│   │   └── tables/
-│   │
-│   └── clustering/
-│       ├── figures/
-│       └── tables/
-│
-└── docs/
-    └── references/
