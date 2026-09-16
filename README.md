@@ -27,7 +27,7 @@ The project is developed collaboratively using **Git and GitHub**, with each tea
 |---|---|---|---|
 | Member 1 | ______________________________ | `______________________________` | ______________________________ |
 | Member 2 | **MASAPETA KURUVA BHARGAVA SRI SAI** | **`Bhargava-Regression`** | **Regression** |
-| Member 3 | **RAPAKA VIKRANTH** | **Vikranth-Classificatio-A** | **Classification**|
+| Member 3 | **RAPAKA VIKRANTH** | **Vikranth-Classification-A** | **Classification**|
 
 ### Branching Strategy
 
