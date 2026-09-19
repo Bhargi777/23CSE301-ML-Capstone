@@ -1,0 +1,28 @@
+23CSE301 ML Capstone — Review 1 Team Split
+=============================================
+
+Member 1 — member1-regression
+------------------------------
+- Regression EDA (dataset audit, distribution plots, correlation heatmap, target distribution, scatter plots)
+- Data cleaning (missing values, duplicates, outliers)
+- Preprocessing (encoding, scaling fit-on-train-only, stratified split)
+- Feature engineering (>=1 engineered feature + justification)
+
+Member 2 — member2-regression-models  [YOU — branch: Bhargava-Regression]
+------------------------------
+- All 10 regression models: Linear, Ridge, Lasso, ElasticNet, Polynomial,
+  Decision Tree, Random Forest, Gradient Boosting, SVR, KNN
+- Evaluation: R2, RMSE, MAE comparison table, ranked
+- Hyperparameter tuning: GridSearchCV/RandomizedSearchCV on top 2 models
+- Cross-validation: 5-fold CV R2 on top 2 models
+- Regression plots/diagnostics: residual plot, predicted-vs-actual, feature importance
+
+Member 3 — member3-classification
+------------------------------
+- Classification preprocessing
+- Logistic Regression
+- KNN
+- Gaussian Naive Bayes
+- Decision Tree
+- SVC
+- Evaluation metrics: Accuracy, weighted F1, confusion matrix per algorithm
