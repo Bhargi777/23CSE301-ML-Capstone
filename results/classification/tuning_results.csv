@@ -1,0 +1,4 @@
+model,best_params,cv_f1_weighted,test_f1_before,test_f1_after,test_roc_auc_before,test_roc_auc_after
+KNN,"{'metric': 'manhattan', 'n_neighbors': 35}",0.8434,0.8298,0.8363,0.8865,0.8972
+Decision Tree,"{'max_depth': 10, 'min_samples_leaf': 1}",0.8177,0.8188,0.8188,0.8942,0.8942
+SVC,"{'C': 5, 'kernel': 'rbf'}",0.809,0.8168,0.8172,0.8995,0.8952
