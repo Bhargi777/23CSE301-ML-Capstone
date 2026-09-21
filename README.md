@@ -75,22 +75,29 @@ main
 - Source: `data/raw/airquality/AirQualityUCI.csv` (`;` separator, `,` decimal). Train: `data/processed/regression_train.csv`
   (6,139 rows). Test: `data/processed/regression_test.csv` (1,535 rows). Stratified 80/20 split of 7,674 rows.
 - Cleaning: 114 empty trailing rows and 2 empty columns dropped; `-200` sentinel converted to NaN; 1,683 rows with a
-  missing `CO(GT)` dropped; `NMHC(GT)` (~90% missing) dropped; duplicates removed.
+  missing `CO(GT)` dropped; `NMHC(GT)` (~90% missing) dropped; duplicates checked (none).
 - Features: `hour`, `day`, `month` parsed from Date/Time, plus `T_RH_Interaction`.
 - Median imputation, IQR outlier capping and standardization are fit on the training split only (no leakage).
+- Models: all 10 regressors are compared on R2, RMSE and MAE; the top 2 are tuned with `GridSearchCV` and checked with
+  5-fold CV (best after tuning: Gradient Boosting, test R2 0.947). The remaining algorithms are tuned in an extra
+  section, with linear coefficients, polynomial degrees, tree feature importance and the effect of scaling on KNN.
 - Limitations: random split of hourly time-series data and reference-analyser features (`C6H6(GT)`, `NOx(GT)`,
   `NO2(GT)`) make scores optimistic; see the notebook for details.
 
 ### Classification (Adult, target `income`)
 
-- Train: `data/raw/adult/adult_train.csv` (32,561 raw rows, 30,139 after cleaning). Test: `adult_test.csv`
-  (16,281 raw rows, 15,060 after cleaning). This is the official UCI split.
-- Cleaning: `?` rows dropped, whitespace stripped, trailing period on the test labels removed, duplicate train rows
-  removed, `fnlwgt` and redundant `education` dropped.
-- Encoding: one-hot for nominal columns (fit on train only, unseen categories ignored); numeric columns standardized.
-- Imbalance: ~75% `<=50K` / 25% `>50K`. `class_weight='balanced'` is used where supported, and macro F1, balanced
-  accuracy and the majority-class baseline (~75% accuracy) are reported next to accuracy and weighted F1.
-- 5 classifiers: Logistic Regression, KNN, Gaussian Naive Bayes, Decision Tree, SVC.
+- Data: the two UCI files (`adult_train.csv`, `adult_test.csv`) are pooled (48,842 rows), cleaned, then split once with a
+  stratified 80/20 split (`random_state=42`): 36,140 train / 9,035 test rows, same class ratio in both.
+- Cleaning: 3,620 rows with `?` dropped, 47 duplicates dropped (45,175 rows left), whitespace stripped, trailing period
+  on the test labels removed.
+- Outliers and features: `log1p` on the skewed `capital-gain` / `capital-loss`; engineered `net_capital` and `overtime`;
+  `fnlwgt` (sampling weight) and the redundant `education` dropped.
+- Encoding: one-hot for nominal columns and `StandardScaler` for numeric ones, both fit on train only.
+- Imbalance: ~75% `<=50K` / 25% `>50K`. `class_weight='balanced'` is used where supported, and the majority-class baseline
+  (75% accuracy, weighted F1 0.646) is reported next to accuracy, precision, recall, weighted/macro F1, balanced accuracy
+  and ROC-AUC.
+- 5 classifiers (Part A): Logistic Regression, KNN, Gaussian Naive Bayes, Decision Tree, SVC; KNN, Decision Tree and SVC
+  are tuned, the top 2 are cross-validated (best: KNN, weighted F1 0.836, ROC-AUC 0.897).
 
 ---
 
