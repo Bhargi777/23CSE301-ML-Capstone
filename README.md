@@ -90,8 +90,7 @@ main
 - Encoding: one-hot for nominal columns (fit on train only, unseen categories ignored); numeric columns standardized.
 - Imbalance: ~75% `<=50K` / 25% `>50K`. `class_weight='balanced'` is used where supported, and macro F1, balanced
   accuracy and the majority-class baseline (~75% accuracy) are reported next to accuracy and weighted F1.
-- 10 classifiers: Logistic Regression, KNN, Gaussian Naive Bayes, Decision Tree, SVC, Random Forest, Extra Trees,
-  Gradient Boosting, AdaBoost, MLP.
+- 5 classifiers: Logistic Regression, KNN, Gaussian Naive Bayes, Decision Tree, SVC.
 
 ---
 
