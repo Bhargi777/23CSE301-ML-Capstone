@@ -101,6 +101,56 @@ main
 
 ---
 
+## Review 2 — Member 1 (Bhargava)
+
+Scope: two Classification Part B algorithms (Random Forest, AdaBoost) and clustering deliverables B2 (metrics,
+Elbow curve, Dendrogram) and B3 (PCA and t-SNE plots). Notebooks live in `review2/notebooks/`; run them from that
+folder top to bottom.
+
+### Classification Part B (Adult) — `member1_classification_partB.ipynb`
+
+- `review2/notebooks/adult_prep.py` reproduces the Review 1 pipeline, so Part B uses the same 36,140 / 9,035
+  stratified split and train-only encoder/scaler as Part A.
+- Both models tuned with stratified 5-fold `GridSearchCV` on weighted F1; 5-fold CV reported for both.
+
+| Model | Best params | Accuracy | Weighted F1 | ROC-AUC |
+|---|---|---|---|---|
+| Random Forest | `n_estimators=100`, `max_depth=None`, `min_samples_leaf=1` | 0.833 | 0.836 | 0.897 |
+| AdaBoost | `n_estimators=500`, `learning_rate=1.0` | 0.814 | 0.823 | 0.910 |
+
+- Tuning raised RF accuracy by 0.011 and weighted F1 by 0.005, but lowered ROC-AUC by 0.020. AdaBoost improved on
+  every metric (weighted F1 +0.005, ROC-AUC +0.007).
+- Outputs: `review2/results/classification/partB_member1_*.csv|png`, `rf_*.png`, `adaboost_*.png`;
+  models in `review2/models/classification/random_forest.pkl`, `adaboost.pkl`.
+
+### Clustering B2 + B3 (Gas Sensor) — `member1_clustering_evaluation.ipynb`
+
+- Features: 128 sensor features, signed `log1p` and `StandardScaler`; gas label and concentration removed before
+  fitting and used only to interpret the clusters afterwards.
+- k = 4 from the K-Means Elbow curve; the Ward dendrogram also has a natural cut at 4 clusters.
+
+| Algorithm | Silhouette | Davies-Bouldin | Calinski-Harabasz | ARI vs gas |
+|---|---|---|---|---|
+| K-Means (k=4) | 0.267 | 1.253 | 6,674 | 0.196 |
+| Agglomerative, Ward (k=4) | 0.202 | 1.378 | 5,390 | 0.121 |
+
+- Linkage comparison: single and average linkage put 13,907 of 13,910 points in one cluster, so Ward is used.
+- PCA (first 2 components = 77% of variance) and t-SNE plots for both algorithms, next to the true gas.
+- Outputs: `review2/results/clustering/` (metrics CSVs, elbow, dendrogram, linkage, PCA, t-SNE, cluster-vs-gas plots).
+
+### Environment and running
+
+```bash
+pip install -r review2/requirements.txt
+cd review2/notebooks
+jupyter nbconvert --to notebook --execute --inplace member1_classification_partB.ipynb   # ~4 min
+jupyter nbconvert --to notebook --execute --inplace member1_clustering_evaluation.ipynb  # ~2 min
+```
+
+AI assistance: generative AI tools were used for code scaffolding in these notebooks, as allowed by guideline 7.5.
+
+---
+
 ## Repository Structure
 
 ```text
