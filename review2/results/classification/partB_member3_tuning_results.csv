@@ -1,0 +1,5 @@
+model,metric,base,tuned,change,best_params
+Gradient Boosting,accuracy,0.8199225235196458,0.8371887105700055,0.01726618705035976,"{'learning_rate': 0.05, 'max_depth': 5, 'n_estimators': 300}"
+Gradient Boosting,f1_weighted,0.8289500061958253,0.8446485623644608,0.01569855616863558,"{'learning_rate': 0.05, 'max_depth': 5, 'n_estimators': 300}"
+Gradient Boosting,f1_macro,0.785982207251209,0.8039544007791385,0.017972193527929448,"{'learning_rate': 0.05, 'max_depth': 5, 'n_estimators': 300}"
+Gradient Boosting,roc_auc,0.9170653316514243,0.9260245519289394,0.008959220277515056,"{'learning_rate': 0.05, 'max_depth': 5, 'n_estimators': 300}"

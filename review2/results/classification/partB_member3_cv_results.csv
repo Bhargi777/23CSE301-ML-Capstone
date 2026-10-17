@@ -1,0 +1,2 @@
+model,cv_accuracy_mean,cv_accuracy_std,cv_f1_weighted_mean,cv_f1_weighted_std,cv_roc_auc_mean,cv_roc_auc_std
+Gradient Boosting,0.8340896513558385,0.0031468662168147306,0.8418953258931715,0.0029130804623818877,0.9271768622474695,0.0035599728935889682
