@@ -23,15 +23,19 @@ The project is developed collaboratively using **Git and GitHub**, with each tea
 
 # Team Members
 
-| Member | Name | Roll Number | Part | Branch |
-|---|---|---|---|---|
-| 1 | Abhigna | CB.SC.U4CSE24227 | Regression EDA, cleaning, preprocessing | `Abhigna-Regression` |
-| 2 | Bhargava | CB.SC.U4CSE24268 | Regression models, tuning, CV, diagnostics | `Bhargava-Regression` |
-| 3 | Vikranth | CB.SC.U4CSE24244 | Classification preprocessing, models, evaluation | `Vikranth-Classification` |
+| Name | Roll Number | Review 1 role | Review 2 role |
+|---|---|---|---|
+| Bhargava | CB.SC.U4CSE24268 | Member 2 — regression models, tuning, CV, diagnostics | **Member 1** — Random Forest, AdaBoost; clustering B2 + B3; Streamlit app |
+| Abhigna | CB.SC.U4CSE24227 | Member 1 — regression EDA, cleaning, preprocessing | **Member 2** — Adult preprocessing walkthrough, Bagging, MLP; K-Means (B1) |
+| Vikranth | CB.SC.U4CSE24244 | Member 3 — classification Part A | **Member 3** — Gradient Boosting; A2 / A3; Agglomerative (B1) |
+
+Member numbers differ between the two reviews; the notebook names in `review2/notebooks/` follow the **Review 2**
+numbering (`member1_*` = Bhargava, `*_member2` = Abhigna, `member3_*` = Vikranth).
 
 ### Branching Strategy
 
-Each member works independently on their assigned branch.
+Review 1: each member worked on their own branch (below). Review 2: work was committed directly to `main`, one
+commit per milestone, with each member as the author of their own notebooks.
 
 ```text
 main
@@ -157,9 +161,9 @@ AI assistance: generative AI tools were used for code scaffolding in these noteb
 
 | Member | Classification Part B | Clustering |
 |---|---|---|
-| 1 | Random Forest, AdaBoost (`member1_classification_partB.ipynb`) | B2 metrics, Elbow, Dendrogram, linkage comparison; B3 PCA + t-SNE (`member1_clustering_evaluation.ipynb`) |
-| 2 | Bagging, MLP (`classification_member2.ipynb`, incl. step-by-step Adult preprocessing) | B1 K-Means (`clustering_member2.ipynb`) |
-| 3 | Gradient Boosting (`member3_gradient_boosting.ipynb`); A2 10-model table + A3 final model (`member3_classification_A2_A3_corrected.ipynb`) | B1 Agglomerative (`member3_agglomerative_clustering.ipynb`) |
+| 1 — Bhargava | Random Forest, AdaBoost (`member1_classification_partB.ipynb`) | B2 metrics, Elbow, Dendrogram, linkage comparison; B3 PCA + t-SNE (`member1_clustering_evaluation.ipynb`) |
+| 2 — Abhigna | Bagging, MLP (`classification_member2.ipynb`, incl. step-by-step Adult preprocessing) | B1 K-Means (`clustering_member2.ipynb`) |
+| 3 — Vikranth | Gradient Boosting (`member3_gradient_boosting.ipynb`); A2 10-model table + A3 final model (`member3_classification_A2_A3_corrected.ipynb`) | B1 Agglomerative (`member3_agglomerative_clustering.ipynb`) |
 
 All classifiers use the same Adult split from `review2/notebooks/adult_prep.py` (36,140 train / 9,035 test,
 stratified, encoder and scaler fitted on train only) and balanced class weights.
@@ -226,18 +230,24 @@ Streamlit Community Cloud, point a new app at this repository with main file `re
 ## Repository Structure
 
 ```text
-data/
-  raw/            # original datasets (airquality, adult, gassensor)
-  processed/      # cleaned/engineered train-test splits
-notebooks/        # member1/2/3 notebooks, run in that order
-models/
-  regression/     # fitted regression models + diagnostic plots
-  classification/ # fitted classification models + confusion matrices
-results/
-  regression/     # metrics tables, comparison plots
-  classification/ # metrics tables, comparison plots
-  clustering/     # clustering evaluation (Review 2)
+README.md
+23CSE301_ML_26_27_Capstone_Guidelines.pdf
+review1/                  # Review 1 snapshot: regression + classification Part A
+  requirements.txt
+  data/  notebooks/  models/  results/
+review2/                  # Review 2: classification Part B, clustering, app
+  requirements.txt        # all Python dependencies (notebooks + app)
+  data/raw/               # adult, gassensor (+ conversion scripts), airquality
+  notebooks/              # adult_prep.py (shared preprocessing) + the 7 Review 2 notebooks
+  models/classification/  # tuned classifiers (.pkl, Git LFS)
+  models/clustering/      # K-Means model + clustering scaler
+  results/classification/ # metric tables, tuning/CV results, plots
+  results/clustering/     # cluster labels, metrics, elbow, dendrogram, PCA, t-SNE plots
+  app/                    # Streamlit GUI (app.py + requirements.txt)
 ```
+
+AI assistance (guideline 7.5): generative AI tools were used for code scaffolding across the Review 2 notebooks and
+the app.
 
 ---
 
