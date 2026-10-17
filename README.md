@@ -151,6 +151,54 @@ AI assistance: generative AI tools were used for code scaffolding in these noteb
 
 ---
 
+## Review 2 — Team results
+
+### Work split
+
+| Member | Classification Part B | Clustering |
+|---|---|---|
+| 1 | Random Forest, AdaBoost (`member1_classification_partB.ipynb`) | B2 metrics, Elbow, Dendrogram, linkage comparison; B3 PCA + t-SNE (`member1_clustering_evaluation.ipynb`) |
+| 2 | Bagging, MLP (`classification_member2.ipynb`, incl. step-by-step Adult preprocessing) | B1 K-Means (`clustering_member2.ipynb`) |
+| 3 | Gradient Boosting (`member3_gradient_boosting.ipynb`); A2 10-model table + A3 final model (`member3_classification_A2_A3_corrected.ipynb`) | B1 Agglomerative (`member3_agglomerative_clustering.ipynb`) |
+
+All classifiers use the same Adult split from `review2/notebooks/adult_prep.py` (36,140 train / 9,035 test,
+stratified, encoder and scaler fitted on train only) and balanced class weights.
+
+### Classification — all ten algorithms (test set, sorted by weighted F1)
+
+| Rank | Model | Part | Accuracy | Precision (w) | Recall (w) | F1 (w) | ROC-AUC |
+|---|---|---|---|---|---|---|---|
+| 1 | Bagging | B | 0.846 | 0.855 | 0.846 | 0.849 | 0.914 |
+| 2 | **Gradient Boosting** | B | 0.837 | 0.867 | 0.837 | 0.845 | **0.926** |
+| 3 | KNN | A | 0.839 | 0.835 | 0.839 | 0.836 | 0.897 |
+| 4 | Random Forest | B | 0.833 | 0.841 | 0.833 | 0.836 | 0.897 |
+| 5 | AdaBoost | B | 0.814 | 0.851 | 0.814 | 0.823 | 0.910 |
+| 6 | Decision Tree | A | 0.809 | 0.849 | 0.809 | 0.819 | 0.894 |
+| 7 | SVC | A | 0.807 | 0.849 | 0.807 | 0.817 | 0.895 |
+| 8 | MLP | B | 0.803 | 0.853 | 0.803 | 0.814 | 0.908 |
+| 9 | Logistic Regression | A | 0.800 | 0.842 | 0.800 | 0.810 | 0.894 |
+| 10 | Gaussian Naive Bayes | A | 0.586 | 0.811 | 0.586 | 0.605 | 0.834 |
+
+**Final model: Gradient Boosting** (`learning_rate=0.05, max_depth=5, n_estimators=300`). Best ROC-AUC (0.926, CV
+0.927 ± 0.004), balanced accuracy (0.844) and macro F1 (0.804) of all ten; catches 86% of `>50K` earners. Bagging has
+slightly higher accuracy / weighted F1 but finds ~215 fewer high earners. Full justification in the A3 notebook.
+
+### Clustering — Gas Sensor (k = 4)
+
+| Algorithm | Silhouette | Davies-Bouldin | Calinski-Harabasz | ARI vs gas |
+|---|---|---|---|---|
+| K-Means | 0.267 | 1.253 | 6,674 | 0.196 |
+| Agglomerative (Ward) | 0.202 | 1.378 | 5,390 | 0.121 |
+
+### Run order (from `review2/notebooks/`)
+
+1. Classification: `member1_classification_partB.ipynb`, `classification_member2.ipynb`,
+   `member3_gradient_boosting.ipynb`, then `member3_classification_A2_A3_corrected.ipynb` (reads the others' result CSVs).
+2. Clustering: `clustering_member2.ipynb`, `member3_agglomerative_clustering.ipynb`, then
+   `member1_clustering_evaluation.ipynb` (loads both label files).
+
+---
+
 ## Repository Structure
 
 ```text
