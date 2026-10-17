@@ -1,0 +1,9 @@
+model,metric,base,tuned,change,best_params
+Bagging,accuracy,0.8410625345877144,0.8459324847814056,0.004869950193691186,"{'estimator__max_depth': 20, 'max_samples': 0.5, 'n_estimators': 150}"
+Bagging,f1_weighted,0.8385839556698863,0.8492645084977107,0.01068055282782443,"{'estimator__max_depth': 20, 'max_samples': 0.5, 'n_estimators': 150}"
+Bagging,f1_macro,0.7803884558208791,0.8027081648542458,0.022319709033366664,"{'estimator__max_depth': 20, 'max_samples': 0.5, 'n_estimators': 150}"
+Bagging,roc_auc,0.891571533690739,0.9135153211394933,0.02194378744875425,"{'estimator__max_depth': 20, 'max_samples': 0.5, 'n_estimators': 150}"
+MLP,accuracy,0.810403984504704,0.8030990592141671,-0.0073049252905368345,"{'activation': 'tanh', 'alpha': 0.01, 'hidden_layer_sizes': (64, 32)}"
+MLP,f1_weighted,0.8200455329551823,0.8142781570741853,-0.005767375880997072,"{'activation': 'tanh', 'alpha': 0.01, 'hidden_layer_sizes': (64, 32)}"
+MLP,f1_macro,0.7751862344956018,0.7712343779090262,-0.003951856586575597,"{'activation': 'tanh', 'alpha': 0.01, 'hidden_layer_sizes': (64, 32)}"
+MLP,roc_auc,0.9025056173131504,0.9075196113213497,0.005013994008199352,"{'activation': 'tanh', 'alpha': 0.01, 'hidden_layer_sizes': (64, 32)}"
