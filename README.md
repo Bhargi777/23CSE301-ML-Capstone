@@ -199,6 +199,30 @@ slightly higher accuracy / weighted F1 but finds ~215 fewer high earners. Full j
 
 ---
 
+## Streamlit app (bonus D8)
+
+`review2/app/app.py` is a web GUI over the trained models:
+
+- **Income prediction:** enter a person's census details; the inputs go through the same `adult_prep` pipeline as the
+  notebooks (encoder and scaler fitted on the training split only) and the chosen Part B model returns the predicted
+  class and P(>50K). Default model: Gradient Boosting (the A3 final model); all five Part B models can be compared.
+- **Gas sensor cluster:** pick a measurement from the dataset or upload a CSV with `feature_1 ... feature_128`; it is
+  signed-log transformed, scaled with the saved clustering scaler and assigned to a K-Means cluster, shown on the
+  PCA map with the cluster's gas make-up. (Agglomerative clustering cannot assign new points, so K-Means is used.)
+- **Results:** the 10-classifier table and the clustering metrics.
+
+Run locally (from the repository root, after `git lfs pull` so the `.pkl` models are real files):
+
+```bash
+pip install -r review2/app/requirements.txt
+streamlit run review2/app/app.py
+```
+
+`review2/app/requirements.txt` pins `scikit-learn==1.9.0`, the version the models were saved with. To deploy on
+Streamlit Community Cloud, point a new app at this repository with main file `review2/app/app.py`.
+
+---
+
 ## Repository Structure
 
 ```text
